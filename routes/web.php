@@ -17,7 +17,20 @@ use App\Http\Controllers\Home\WelcomeController as WelcomeController;
 
 Route::get('/', function () {
 
-    return view('pages.welcome');
+    // HEADER
+    $menus = config('menus');
+    //FOOTER
+    $comicsMenus = config('comicsMenus');
+    $shopMenus = config('shopMenus');
+    $dcMenu = config('dcmenu');
+    $sitesMenu = config('sitesMenus');
+    $socialIcons = config('socialIcons');
+    //BANNER
+    $bannerLink = config('bannerLink');
+
+
+    $currentSeries = config('comics');
+    return view('pages.comics', compact('menus', 'comicsMenus', 'shopMenus', 'dcMenu', 'sitesMenu', 'socialIcons', 'bannerLink', 'currentSeries'));
 })->name('homePage');
 
 
