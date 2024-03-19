@@ -90,7 +90,20 @@ class ComicController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $comic = Comic::findOrFail($id);
+
+        // HEADER
+        $menus = config('menus');
+        //FOOTER
+        $comicsMenus = config('comicsMenus');
+        $shopMenus = config('shopMenus');
+        $dcMenu = config('dcmenu');
+        $sitesMenu = config('sitesMenus');
+        $socialIcons = config('socialIcons');
+        //BANNER
+        $bannerLink = config('bannerLink');
+
+        return view('pages.comics.edit', compact('menus', 'comicsMenus', 'shopMenus', 'dcMenu', 'sitesMenu', 'socialIcons', 'bannerLink', 'comic'));
     }
 
     /**
@@ -98,7 +111,13 @@ class ComicController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $formData = $request->all();
+
+        $comic = Comic::find($id);
+
+        $comic->update($formData);
+
+        return redirect()->route('comics.index');
     }
 
     /**
@@ -109,7 +128,7 @@ class ComicController extends Controller
         $comic = Comic::findOrFail($id);
 
         $comic->delete();
-        
+
         return redirect()->route('comics.index');
     }
 }
