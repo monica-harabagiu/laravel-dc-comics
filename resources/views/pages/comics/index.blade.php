@@ -25,13 +25,28 @@
                 <tbody>
                     @foreach ($comics as $comic)
                         <tr>
-                            <td>{{ $comic->title }}</td>
+                            <td>
+                                <a href="{{ route('comics.show', $comic->id) }}">
+                                    {{ $comic->title }}
+                                </a>
+                            </td>
                             <td>{{ $comic->description }}</td>
                             <td>{{ $comic->thumb }}</td>
                             <td>{{ $comic->price }}</td>
                             <td>{{ $comic->series }}</td>
                             <td>{{ $comic->sale_date }}</td>
                             <td>{{ $comic->type }}</td>
+                            <td>
+                                <form action="{{ route('comics.destroy', $comic->id) }}" method="POST">
+
+                                    @csrf
+                                    @method('DELETE')
+                                    
+                                    <button type="submit" class="btn btn-danger">
+                                        Cancella
+                                    </button>
+                                </form>
+                            </td>
                         </tr>
                     @endforeach
                 </tbody>

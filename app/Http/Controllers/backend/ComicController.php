@@ -55,7 +55,13 @@ class ComicController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd ($request);
+        $form_data = $request->all();
+        $new_comic = new Comic();
+        $new_comic->fill($form_data);
+        $new_comic->save();
+
+        return redirect ()->route( 'comics.show', ['comic' => $new_comic->id]);
     }
 
     /**
@@ -63,7 +69,20 @@ class ComicController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $comic = Comic::findOrFail($id);
+
+        // HEADER
+        $menus = config('menus');
+        //FOOTER
+        $comicsMenus = config('comicsMenus');
+        $shopMenus = config('shopMenus');
+        $dcMenu = config('dcmenu');
+        $sitesMenu = config('sitesMenus');
+        $socialIcons = config('socialIcons');
+        //BANNER
+        $bannerLink = config('bannerLink');
+
+        return view('pages.comics.show', compact('menus', 'comicsMenus', 'shopMenus', 'dcMenu', 'sitesMenu', 'socialIcons', 'bannerLink', 'comic'));
     }
 
     /**
@@ -87,6 +106,10 @@ class ComicController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $comic = Comic::findOrFail($id);
+
+        $comic->delete();
+        
+        return redirect()->route('comics.index');
     }
 }

@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'DC Comics | Read Index')
+@section('title', 'DC Comics | Read Create')
 
 @section('content')
 
