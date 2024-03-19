@@ -9,7 +9,7 @@
         </div>
         <div class="col-10 m-center">
             <div id="slider" class="flex">
-                    @foreach ($currentSeries as $comic)
+                    @foreach ($comics as $comic)
                         <div class="slide">
                             <figure>
                                 <img src="{{ $comic['thumb'] }}" alt="{{ $comic['title'] }}">
