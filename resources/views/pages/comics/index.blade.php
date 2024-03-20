@@ -20,6 +20,7 @@
                         <th scope="col">series</th>
                         <th scope="col">sale_date</th>
                         <th scope="col">type</th> 
+                        <th scope="col">actions</th> 
                     </tr>
                 </thead>
                 <tbody>
